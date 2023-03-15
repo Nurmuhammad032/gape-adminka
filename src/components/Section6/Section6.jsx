@@ -6,7 +6,7 @@ import { useMediaQuery } from "@mui/material";
 
 const Section6 = () => {
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: 0.3,
   });
 
   const isDesktop = useMediaQuery("(min-width:900px)");

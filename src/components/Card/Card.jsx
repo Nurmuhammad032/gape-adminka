@@ -1,8 +1,17 @@
 import "./Card.scss";
 import { Link } from "react-router-dom";
-
-const Card = ({ img, title, link, date, desc }) => {
+import { getContent } from "../../utils/changeLang";
+const Card = ({
+  img,
+  title_uz,
+  title_ru,
+  link,
+  date,
+  short_content_ru,
+  short_content_uz,
+}) => {
   let date1 = new Date(date);
+  // const currentLanguage = i18next.language;
 
   return (
     <Link to={`/courses/${link}`} className="card-component">
@@ -11,14 +20,14 @@ const Card = ({ img, title, link, date, desc }) => {
           <img src={`${img}`} alt="" />
         </div>
         <div className="card-component__title">
-          <h1>{title} </h1>
+          <h1>{getContent(title_ru, title_uz)} </h1>
           <div>
             <p>{date1.getDate()}</p>
             <span>{date1.toLocaleString("default", { month: "long" })}</span>
           </div>
         </div>
         <div className="card-component__desc">
-          <p>{desc}</p>
+          <p>{getContent(short_content_ru, short_content_uz)}</p>
           <div className="card-arrow">
             <img src="/svg/arrow-right.svg" alt="" />
           </div>

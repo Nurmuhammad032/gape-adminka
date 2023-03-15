@@ -59,20 +59,24 @@ const Home = () => {
                     >
                       <Card
                         img={process.env.REACT_APP_FILE_URL + item.file_name}
-                        title={item.title_ru}
+                        title_ru={item.title_ru}
+                        title_uz={item.title_uz}
                         link={item.alias}
                         date={item.created_on}
-                        desc={item.short_content_ru}
+                        short_content_ru={item.short_content_ru}
+                        short_content_uz={item.short_content_uz}
                       />
                     </motion.div>
                   ) : (
                     <div key={i}>
                       <Card
                         img={process.env.REACT_APP_FILE_URL + item.file_name}
-                        title={item.title_ru}
+                        title_ru={item.title_ru}
+                        title_uz={item.title_uz}
                         link={item.alias}
                         date={item.created_on}
-                        desc={item.short_content_ru}
+                        short_content_ru={item.short_content_ru}
+                        short_content_uz={item.short_content_uz}
                       />
                     </div>
                   )

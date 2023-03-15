@@ -8,6 +8,7 @@ import { NotificationManager } from "react-notifications";
 export default function CoursesCategoryCreate() {
   const [data, setData] = useState({
     title_ru: "",
+    title_Uz: "",
     status: false,
   });
   const [lang, setLang] = useState([]);
@@ -21,14 +22,15 @@ export default function CoursesCategoryCreate() {
     const inputName = event.target.name;
     const inputValue = event.target.value;
     const lang = event.target.lang;
-    if (lang) {
-      let nameIn = inputName + "_" + lang;
+    // if (lang) {
+    //   let nameIn = inputName + "_" + lang;
 
-      setData((oldValue) => ({ ...oldValue, [nameIn]: inputValue }));
-    } else {
-      setData((oldValue) => ({ ...oldValue, [inputName]: inputValue }));
-    }
+    //   setData((oldValue) => ({ ...oldValue, [nameIn]: inputValue }));
+    // } else {
+    // }
+    setData((oldValue) => ({ ...oldValue, [inputName]: inputValue }));
   };
+  console.log(data);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -58,7 +60,7 @@ export default function CoursesCategoryCreate() {
         <div className="col-12">
           <div className="bg-secondary rounded h-100 p-4">
             <h6 className="mb-4">Courses Category create form</h6>
-            <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            {/* <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
               {lang.map((item, index) => {
                 index++;
                 return (
@@ -78,10 +80,10 @@ export default function CoursesCategoryCreate() {
                   </li>
                 );
               })}
-            </ul>
+            </ul> */}
             <div className="tab-content" id="pills-tabContent">
               <form onSubmit={handleSubmit}>
-                {lang.map((item, index) => {
+                {/* {lang.map((item, index) => {
                   index++;
                   return (
                     <div
@@ -126,7 +128,43 @@ export default function CoursesCategoryCreate() {
                       </div>
                     </div>
                   );
-                })}
+                })} */}
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="mb-3">
+                      <label htmlFor="title" className="form-label">
+                        Title : ru
+                      </label>
+
+                      <input
+                        type="text"
+                        name="title_ru"
+                        // lang={item.key}
+                        value={data.title_ru}
+                        onChange={handleChange}
+                        className="form-control"
+                        id="title"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="mb-3">
+                      <label htmlFor="title2" className="form-label">
+                        Title : uz
+                      </label>
+
+                      <input
+                        type="text"
+                        name="title_Uz"
+                        // lang={item.key}
+                        value={data.title_Uz}
+                        onChange={handleChange}
+                        className="form-control"
+                        id="title2"
+                      />
+                    </div>
+                  </div>
+                </div>
                 <div className="row">
                   <div className="col-6">
                     <Switch setData={setData} value={data.status} />

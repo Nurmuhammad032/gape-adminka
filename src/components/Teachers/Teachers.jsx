@@ -12,6 +12,7 @@ import { useMediaQuery } from "@mui/material";
 import Slider from "react-slick";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { getContent } from "../../utils/changeLang";
 
 const images = [
   {
@@ -105,6 +106,7 @@ function CustomRightArrow({ className, style, onClick }) {
 
 const Teachers = () => {
   const [data, setData] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
   const { ref, inView } = useInView({
     threshold: 0.5,
   });
@@ -119,10 +121,11 @@ const Teachers = () => {
       });
   }, []);
 
-  console.log(data);
+  useEffect(() => {
+    setSelectedImage(data[0]);
+  }, [data]);
 
   let slidesShow = data?.length >= 5 ? 5 : data?.length;
-  const [selectedImage, setSelectedImage] = useState(null);
 
   var settings = {
     dots: false,
@@ -130,11 +133,8 @@ const Teachers = () => {
     speed: 500,
     slidesToShow: slidesShow,
     centerMode: true,
-    // centerPadding: images.length < 4 ? "10%" : "50px",
-    // centerPadding: "0",
     slidesToScroll: 1,
     mobileFirst: true,
-    // variableWidth: true,
 
     responsive: [
       {
@@ -142,8 +142,6 @@ const Teachers = () => {
         settings: {
           slidesToShow: 4,
           slidesToScroll: 3,
-          // infinite: true,
-          // dots: true,
         },
       },
       {
@@ -151,8 +149,6 @@ const Teachers = () => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-          // infinite: true,
-          // dots: true,
         },
       },
       {
@@ -191,10 +187,6 @@ const Teachers = () => {
     }
   };
 
-  useEffect(() => {
-    setSelectedImage(images[0]);
-  }, []);
-
   function handleClick(image) {
     setSelectedImage(image);
   }
@@ -206,6 +198,7 @@ const Teachers = () => {
   useEffect(() => {
     handleAnimation();
   }, [inView]);
+  console.log(selectedImage);
 
   return (
     <section className="teachers" ref={ref}>
@@ -246,7 +239,10 @@ const Teachers = () => {
                 onClick={() => handleClick(img)}
                 onMouseOver={() => handleHover(img)}
               >
-                <img src={img?.file_name} alt="teachers" />
+                <img
+                  src={process.env.REACT_APP_FILE_URL + img?.file_name}
+                  alt="teachers"
+                />
               </div>
             ))}
           </Slider>
@@ -261,8 +257,15 @@ const Teachers = () => {
             className="teachers__info-wrapper"
           >
             <div className="teachers__info-left">
-              <h1>{selectedImage?.name}</h1>
-              <p className="teachers__info-p">{selectedImage?.short_content}</p>
+              <h1>
+                {getContent(selectedImage?.name_ru, selectedImage?.name_uz)}
+              </h1>
+              <p className="teachers__info-p">
+                {getContent(
+                  selectedImage?.short_content_ru,
+                  selectedImage?.short_content_uz
+                )}
+              </p>
             </div>
             <div className="teachers__info-right">
               <p>{t("teacher.info")}</p>

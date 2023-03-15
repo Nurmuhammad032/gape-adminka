@@ -25,8 +25,6 @@ function TeachersAdmin({ usersState, updateUsers }) {
     });
   }, [count]);
 
-  console.log(data);
-
   return (
     <div className="container-fluid pt-4 px-4">
       <div className="row vh-100  rounded  justify-content-center mx-0">
@@ -51,14 +49,12 @@ function TeachersAdmin({ usersState, updateUsers }) {
                 </thead>
                 <tbody>
                   {data
-                    ?.filter(
-                      (item) => item?.name !== "" && item?.short_content !== ""
-                    )
+                    ?.filter((item) => item?.name_ru !== "")
                     .map(function (item, index) {
                       return (
                         <tr key={index}>
                           <th scope="row">{index + 1}</th>
-                          <td>{item?.name}</td>
+                          <td>{item?.name_ru}</td>
                           <td>
                             <NavLink
                               to={`view/${item?.id}`}

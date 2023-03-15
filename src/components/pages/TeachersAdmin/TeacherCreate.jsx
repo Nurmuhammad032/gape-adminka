@@ -9,12 +9,13 @@ export default function TeacherCreate() {
   const [categoryId, setCategoryId] = useState(0);
   const [lang, setLang] = useState([]);
   const [data, setData] = useState({
+    name_ru: "",
     name_uz: "",
+    short_content_ru: "",
     short_content_uz: "",
     status: false,
   });
 
-  console.log(data);
   const navigation = useNavigate();
 
   const handleChange = (event) => {
@@ -41,21 +42,23 @@ export default function TeacherCreate() {
       .then((res) => {
         if (res.status === 200) {
           setCategoryId(res.data.id);
-          console.log(res);
         }
       });
     // data.created_on = new Date();
   }, [0]);
 
-  console.log(categoryId);
+  // console.log(`id ${categoryId}`);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_API_URL}teachers/create`, data)
+      .put(
+        `${process.env.REACT_APP_API_URL}teachers/update/${categoryId}`,
+        data
+      )
       .then((res) => {
         if (res.status === 200) {
-          setCategoryId(res.data.id);
+          // setCategoryId(res.data.id);
           navigation("/admin/teacher", { replace: true });
         }
       })
@@ -75,11 +78,11 @@ export default function TeacherCreate() {
                 <div className="col-md-6">
                   <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">
-                      Name
+                      Name : ru
                     </label>
                     <input
                       type="text"
-                      name="name"
+                      name="name_ru"
                       onChange={handleChange}
                       className="form-control"
                       id="exampleInputEmail1"
@@ -90,11 +93,41 @@ export default function TeacherCreate() {
                 <div className="col-md-6">
                   <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">
-                      Info
+                      Name : uz
                     </label>
                     <input
                       type="text"
-                      name="short_content"
+                      name="name_uz"
+                      onChange={handleChange}
+                      className="form-control"
+                      id="exampleInputEmail1"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">
+                      Info : ru
+                    </label>
+                    <input
+                      type="text"
+                      name="short_content_ru"
+                      onChange={handleChange}
+                      className="form-control"
+                      id="exampleInputEmail1"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">
+                      Info : uz
+                    </label>
+                    <input
+                      type="text"
+                      name="short_content_uz"
                       onChange={handleChange}
                       className="form-control"
                       id="exampleInputEmail1"
@@ -157,7 +190,7 @@ export default function TeacherCreate() {
                     Upload
                   </button>
                   {categoryId ? (
-                    <Uploader category="teacher" category_id={categoryId} />
+                    <Uploader category="teachers" category_id={categoryId} />
                   ) : (
                     ""
                   )}

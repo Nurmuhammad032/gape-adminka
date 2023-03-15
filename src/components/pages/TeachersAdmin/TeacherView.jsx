@@ -7,9 +7,11 @@ import Switch from "../../layouts/switch/Switch";
 
 export default function TeacherView() {
   const [data, setData] = useState({
-    username: "",
-    role: "",
-    status: "",
+    name_ru: "",
+    name_uz: "",
+    short_content_ru: "",
+    short_content_uz: "",
+    status: true,
   });
 
   const [password, setPassword] = useState(".");
@@ -24,11 +26,11 @@ export default function TeacherView() {
     setData((oldValue) => ({ ...oldValue, [inputName]: inputValue }));
   };
 
-  const handleChangePassword = (event) => {
-    const inputValue = event.target.value;
+  // const handleChangePassword = (event) => {
+  //   const inputValue = event.target.value;
 
-    setPassword(inputValue);
-  };
+  //   setPassword(inputValue);
+  // };
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}teachers/get/${id}`)
@@ -38,6 +40,8 @@ export default function TeacherView() {
         }
       });
   }, []);
+
+  console.log(data);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -63,34 +67,66 @@ export default function TeacherView() {
             <h6 className="mb-4">Teacher update form</h6>
             <form onSubmit={handleSubmit}>
               <div className="row">
-                <div className="col-6">
+                <div className="col-md-6">
                   <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">
-                      Name
+                    <label htmlFor="exampleInputEmail9" className="form-label">
+                      Name : ru
                     </label>
                     <input
                       type="text"
-                      name="name"
+                      name="name_ru"
                       onChange={handleChange}
                       className="form-control"
-                      id="exampleInputEmail1"
-                      value={data.name || ""}
+                      id="exampleInputEmail9"
+                      value={data.name_ru || ""}
                       required
                     />
                   </div>
                 </div>
-                <div className="col-6">
+                <div className="col-md-6">
                   <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">
-                      Info
+                    <label htmlFor="exampleInputEmail65" className="form-label">
+                      Name : uz
                     </label>
                     <input
                       type="text"
-                      name="short_content"
+                      name="name_uz"
+                      onChange={handleChange}
+                      className="form-control"
+                      id="exampleInputEmail65"
+                      value={data.name_uz || ""}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="mb-3">
+                    <label htmlFor="exampleInputEmail2" className="form-label">
+                      Info : ru
+                    </label>
+                    <input
+                      type="text"
+                      name="short_content_ru"
+                      onChange={handleChange}
+                      className="form-control"
+                      id="exampleInputEmail2"
+                      value={data.short_content_ru || ""}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">
+                      Info : uz
+                    </label>
+                    <input
+                      type="text"
+                      name="short_content_uz"
                       onChange={handleChange}
                       className="form-control"
                       id="exampleInputEmail1"
-                      value={data.short_content || ""}
+                      value={data.short_content_uz || ""}
                       required
                     />
                   </div>
@@ -152,7 +188,7 @@ export default function TeacherView() {
                   >
                     Upload
                   </button>
-                  {id ? <Uploader category="courses" category_id={id} /> : ""}
+                  {id ? <Uploader category="teachers" category_id={id} /> : ""}
                 </div>
               </div>
 

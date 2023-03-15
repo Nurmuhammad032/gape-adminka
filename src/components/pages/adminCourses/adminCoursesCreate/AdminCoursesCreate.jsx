@@ -11,15 +11,18 @@ export default function AdminCoursesCreate() {
   const [categoryId, setCategoryId] = useState(0);
   const [data, setData] = useState({
     title_ru: "",
+    title_uz: "",
     price: 0,
     category_id: 0,
     short_content_ru: "",
+    short_content_uz: "",
     created_on: new Date(),
     alias: "",
     status: false,
   });
   const [lang, setLang] = useState([]);
   const [coursesCategory, setCoursesCategory] = useState([]);
+  // console.log(lang);
   const navigation = useNavigate();
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}lang/get`).then((res) => {
@@ -47,17 +50,17 @@ export default function AdminCoursesCreate() {
     const inputName = event.target.name;
     const inputValue = event.target.value;
     const lang = event.target.lang;
-    if (lang) {
-      let nameIn = inputName + "_" + lang;
-      if (inputName == "title") {
-        const slugifyTest = slug(inputValue, { locale: "bg" });
-        setData((oldValue) => ({ ...oldValue, ["alias"]: slugifyTest }));
-      }
-      // setData(oldValue=>({...oldValue, [inputName]: {...oldValue[inputName],  [lang]:inputValue}}))
-      setData((oldValue) => ({ ...oldValue, [nameIn]: inputValue }));
-    } else {
-      setData((oldValue) => ({ ...oldValue, [inputName]: inputValue }));
+    if (inputName === "title_uz") {
+      const slugifyTest = slug(inputValue, { locale: "bg" });
+      setData((oldValue) => ({ ...oldValue, ["alias"]: slugifyTest }));
     }
+    setData((oldValue) => ({ ...oldValue, [inputName]: inputValue }));
+    // if (lang) {
+    //   let nameIn = inputName + "_" + lang;
+    //   // setData(oldValue=>({...oldValue, [inputName]: {...oldValue[inputName],  [lang]:inputValue}}))
+    //   setData((oldValue) => ({ ...oldValue, [nameIn]: inputValue }));
+    // } else {
+    // }
   };
 
   const handleSubmit = (event) => {
@@ -87,14 +90,14 @@ export default function AdminCoursesCreate() {
       );
     }
   };
-
+  console.log(data);
   return (
     <div className="container-fluid pt-4 px-4">
       <div className="row vh-100  rounded  justify-content-center mx-0">
         <div className="col-12">
           <div className="bg-secondary rounded h-100 p-4">
             <h6 className="mb-4">Courses create form</h6>
-            <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            {/* <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
               {lang.map((item, index) => {
                 index++;
                 return (
@@ -114,10 +117,10 @@ export default function AdminCoursesCreate() {
                   </li>
                 );
               })}
-            </ul>
+            </ul> */}
             <div className="tab-content" id="pills-tabContent">
               <form onSubmit={handleSubmit}>
-                {lang.map((item, index) => {
+                {/* {lang.map((item, index) => {
                   index++;
                   return (
                     <div
@@ -182,7 +185,77 @@ export default function AdminCoursesCreate() {
                       </div>
                     </div>
                   );
-                })}
+                })} */}
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="mb-3">
+                      <label htmlFor="title_ru" className="form-label">
+                        Title : ru
+                      </label>
+                      <input
+                        type="text"
+                        name="title_ru"
+                        // lang={item.key}
+                        // value={data["title_" + item.key]}
+                        onChange={handleChange}
+                        className="form-control"
+                        id="title_ru"
+                        requried
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="mb-3">
+                      <label htmlFor="title_uz" className="form-label">
+                        Title : uz
+                      </label>
+                      <input
+                        type="text"
+                        name="title_uz"
+                        // lang={item.key}
+                        // value={data["title_" + item.key]}
+                        onChange={handleChange}
+                        className="form-control"
+                        id="title_uz"
+                        requried
+                      />
+                    </div>
+                  </div>
+                  <div className="col-12">
+                    <div className="mb-3">
+                      <label htmlFor="short_content_ru" className="form-label">
+                        Short Content : ru
+                      </label>
+
+                      <textarea
+                        name="short_content_ru"
+                        // lang={item.key}
+                        // value={data["short_content_" + item.key]}
+                        onChange={handleChange}
+                        className="form-control"
+                        id="short_content_ru"
+                        rows={6}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-12">
+                    <div className="mb-3">
+                      <label htmlFor="short_content_uz" className="form-label">
+                        Short Content : uz
+                      </label>
+
+                      <textarea
+                        name="short_content_uz"
+                        // lang={item.key}
+                        // value={data["short_content_" + item.key]}
+                        onChange={handleChange}
+                        className="form-control"
+                        id="short_content_uz"
+                        rows={6}
+                      />
+                    </div>
+                  </div>
+                </div>
                 <div className="row">
                   <div className="col-12">
                     <div className="mb-3">

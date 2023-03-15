@@ -1,8 +1,10 @@
 import "./Courses.scss";
+import i18next from "i18next";
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import { Card } from "../../";
+import { getContent } from "../../../utils/changeLang";
 
 const Courses = () => {
   const [current, setCurrent] = useState(0);
@@ -24,12 +26,14 @@ const Courses = () => {
       });
   }, []);
 
+  // console.log(data);
+
   const handleTabClick = (index) => {
     setCurrent(index);
-    if (index == 0) {
+    if (index === 0) {
       setFilteredData(data);
     } else {
-      const filtered = data.filter((item) => item.category_id == index);
+      const filtered = data.filter((item) => item.category_id === index);
 
       setFilteredData(filtered);
     }
@@ -63,7 +67,7 @@ const Courses = () => {
             <ul className="courses-items__tab-wrapper">
               <li
                 onClick={() => handleTabClick(0)}
-                className={`${current == 0 ? "active-tab" : ""}`}
+                className={`${current === 0 ? "active-tab" : ""}`}
               >
                 Все
               </li>
@@ -71,9 +75,9 @@ const Courses = () => {
                 <li
                   key={i}
                   onClick={() => handleTabClick(item.id)}
-                  className={`${current == item.id ? "active-tab" : ""}`}
+                  className={`${current === item.id ? "active-tab" : ""}`}
                 >
-                  {item.title_ru}
+                  {getContent(item.title_ru, item.title_Uz)}
                 </li>
               ))}
             </ul>
@@ -90,10 +94,12 @@ const Courses = () => {
                   >
                     <Card
                       img={process.env.REACT_APP_FILE_URL + item.file_name}
-                      title={item.title_ru}
+                      title_ru={item.title_ru}
+                      title_uz={item.title_uz}
                       link={item.alias}
                       date={item.created_on}
-                      desc={item.short_content_ru}
+                      short_content_ru={item.short_content_ru}
+                      short_content_uz={item.short_content_uz}
                     />
                   </motion.div>
                 ))}
