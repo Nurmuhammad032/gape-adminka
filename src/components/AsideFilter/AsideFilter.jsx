@@ -4,7 +4,7 @@ import { IoIosClose } from "react-icons/io";
 import { FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 
 import { useEffect } from "react";
-import { FilterWrapper } from "../pages/Calendar/Calendar";
+import { FilterWrapper } from "../pages/CalendarPage/CalendarPage";
 
 const DayHour = ({ label, value }) => {
   return (

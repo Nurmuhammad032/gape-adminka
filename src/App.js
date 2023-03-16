@@ -28,10 +28,10 @@ import CoursesCategoryCreate from "./components/pages/coursesCategory/coursesCat
 import {
   Courses,
   Course,
-  Calendar,
   Home,
   About,
   Contact,
+  CalendarPage,
 } from "./components/pages";
 import $ from "jquery";
 import { NotificationContainer } from "react-notifications";
@@ -73,7 +73,7 @@ function App() {
           <Route path="courses" element={<Courses />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="calendar" element={<Calendar />} />
+          <Route path="calendar" element={<CalendarPage />} />
         </Route>
         <Route path="/login" element={<Auth />} />
 
