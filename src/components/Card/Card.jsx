@@ -13,8 +13,17 @@ const Card = ({
 }) => {
   let date1 = new Date(date);
   // const currentLanguage = i18next.language;
-  console.log(date1);
+  function shortenString(inputString, maxLength) {
+    const words = inputString.split(" ");
 
+    let shortenedString = words.slice(0, maxLength).join(" ");
+
+    if (words.length > maxLength) {
+      shortenedString += " ...";
+    }
+
+    return shortenedString;
+  }
   return (
     <Link to={`/courses/${link}`} className="card-component">
       <div>
@@ -22,7 +31,7 @@ const Card = ({
           <img src={`${img}`} alt="" />
         </div>
         <div className="card-component__title">
-          <h1>{getContent(title_ru, title_uz)} </h1>
+          <h1>{shortenString(getContent(title_ru, title_uz), 3)} </h1>
           <div>
             <p>{date1.getDate()}</p>
             <span>
@@ -36,7 +45,9 @@ const Card = ({
           </div>
         </div>
         <div className="card-component__desc">
-          <p>{getContent(short_content_ru, short_content_uz)}</p>
+          <p>
+            {shortenString(getContent(short_content_ru, short_content_uz), 5)}
+          </p>
           <div className="card-arrow">
             <img src="/svg/arrow-right.svg" alt="" />
           </div>

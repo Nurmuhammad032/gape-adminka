@@ -26,7 +26,6 @@ const Courses = () => {
       });
   }, []);
 
-  // console.log(data);
 
   const handleTabClick = (index) => {
     setCurrent(index);

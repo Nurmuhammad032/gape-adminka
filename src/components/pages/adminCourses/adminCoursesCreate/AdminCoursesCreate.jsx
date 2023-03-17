@@ -22,7 +22,6 @@ export default function AdminCoursesCreate() {
   });
   const [lang, setLang] = useState([]);
   const [coursesCategory, setCoursesCategory] = useState([]);
-  // console.log(lang);
   const navigation = useNavigate();
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}lang/get`).then((res) => {
@@ -90,7 +89,7 @@ export default function AdminCoursesCreate() {
       );
     }
   };
-  console.log(data);
+  
   return (
     <div className="container-fluid pt-4 px-4">
       <div className="row vh-100  rounded  justify-content-center mx-0">

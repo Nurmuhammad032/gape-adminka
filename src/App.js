@@ -41,6 +41,7 @@ import { Footer, Navbar, ScrollTop } from "./components";
 import TeachersAdmin from "./components/pages/TeachersAdmin/TeachersAdmin";
 import TeacherCreate from "./components/pages/TeachersAdmin/TeacherCreate";
 import TeacherView from "./components/pages/TeachersAdmin/TeacherView";
+import axios from "axios";
 
 function App() {
   const { t, i18n } = useTranslation();

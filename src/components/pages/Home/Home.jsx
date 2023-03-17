@@ -12,6 +12,12 @@ const Home = () => {
   const { ref, inView } = useInView({
     threshold: 0.4,
   });
+
+  useEffect(() => {
+    axios
+      .get("http://192.168.0.154:8080/api/courses/get-main")
+      .then((res) => console.log(res));
+  }, []);
   const { t } = useTranslation();
   const [data, setData] = useState([]);
   const isDesktop = useMediaQuery("(min-width:900px)");
@@ -89,7 +95,7 @@ const Home = () => {
       </section>
       <Section3 />
       <Teachers />
-      <Section5 />
+      {/* <Section5 /> */}
       <Section6 />
     </div>
   );

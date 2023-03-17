@@ -26,7 +26,6 @@ export default function CoursesCategoryView() {
     //   setLang(res.data.data.result);
     // });
   }, []);
-  console.log(data);
   const handleChange = (event) => {
     const inputName = event.target.name;
     const inputValue = event.target.value;

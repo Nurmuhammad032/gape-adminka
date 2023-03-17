@@ -47,8 +47,6 @@ export default function TeacherCreate() {
     // data.created_on = new Date();
   }, [0]);
 
-  // console.log(`id ${categoryId}`);
-
   const handleSubmit = (event) => {
     event.preventDefault();
     axios

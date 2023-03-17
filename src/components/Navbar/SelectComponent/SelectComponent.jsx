@@ -16,8 +16,6 @@ const SelectComponent = () => {
     i18n.changeLanguage(language);
   }, [language]);
 
-  // console.log(language);
-
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth size="small">

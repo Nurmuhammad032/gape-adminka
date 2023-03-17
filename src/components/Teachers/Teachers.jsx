@@ -198,7 +198,6 @@ const Teachers = () => {
   useEffect(() => {
     handleAnimation();
   }, [inView]);
-  console.log(selectedImage);
 
   return (
     <section className="teachers" ref={ref}>

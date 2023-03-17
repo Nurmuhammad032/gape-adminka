@@ -38,7 +38,6 @@ export default function MenuCreate() {
       .then((res) => {
         if (res.status == 200) {
           setCategoryId(res.data.id);
-          console.log(res);
         }
       });
     data.created_on = new Date();
@@ -60,7 +59,6 @@ export default function MenuCreate() {
     // } else {
     // }
   };
-  console.log(data);
 
   const handleSubmit = (event) => {
     event.preventDefault();

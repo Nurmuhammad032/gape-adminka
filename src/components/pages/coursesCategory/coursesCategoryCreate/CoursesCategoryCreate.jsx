@@ -30,7 +30,6 @@ export default function CoursesCategoryCreate() {
     // }
     setData((oldValue) => ({ ...oldValue, [inputName]: inputValue }));
   };
-  console.log(data);
 
   const handleSubmit = (event) => {
     event.preventDefault();

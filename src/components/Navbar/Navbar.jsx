@@ -45,8 +45,6 @@ const Navbar = () => {
     }
   }, [pathname]);
 
-  // console.log(data);
-
   const getLinkClassName = (pathname, link) =>
     pathname.split("/")[1] === link ? "active-link" : "";
 
