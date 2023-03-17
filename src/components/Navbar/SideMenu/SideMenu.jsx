@@ -1,15 +1,17 @@
 import "./SideMenu.scss";
 import { IoIosClose } from "react-icons/io";
-import { links } from "../links";
-import { Link } from "react-router-dom";
+import { links, translations } from "../links";
+import { Link, useLocation } from "react-router-dom";
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import { RxChevronDown } from "react-icons/rx";
 import { accordionStyles, accordionSummeryStyles } from "../../accordionStyles";
+import { Link as Scroll } from "react-scroll";
 import { useEffect, useState } from "react";
+import { getContent } from "../../../utils/changeLang";
 
 const SideMenu = ({ isActive, setIsActive }) => {
   const [expanded, setExpanded] = useState(false);
-
+  const { pathname } = useLocation();
   const handleChange = (panel) => (_, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -81,19 +83,46 @@ const SideMenu = ({ isActive, setIsActive }) => {
               </div>
             </div>
           ) : (
-            <Link
-              key={i}
-              to={`/${item.link}`}
-              className="app__link"
-              onClick={() => setIsActive(false)}
-            >
-              {item.label}
-            </Link>
+            <>
+              {item.scroll ? (
+                pathname === "/" ? (
+                  <Scroll
+                    className={"app__link"}
+                    to={"section3-page"}
+                    spy={true}
+                    onClick={() => setIsActive(false)}
+                  >
+                    {getContent(
+                      translations["ru"][item.link],
+                      translations["uz"][item.link]
+                    )}
+                  </Scroll>
+                ) : (
+                  ""
+                )
+              ) : (
+                <Link
+                  key={i}
+                  to={`/${item.link}`}
+                  className="app__link"
+                  onClick={() => setIsActive(false)}
+                >
+                  {getContent(
+                    translations["ru"][item.link],
+                    translations["uz"][item.link]
+                  )}
+                </Link>
+              )}
+            </>
           )
         )}
-        {/* <Link to={`/contact`} className="app__link">
-          календарь
-        </Link> */}
+        <Link
+          to={`/contact`}
+          className="app__link"
+          onClick={() => setIsActive(false)}
+        >
+          {getContent("календарь", "Kalendar")}
+        </Link>
       </div>
     </aside>
   );

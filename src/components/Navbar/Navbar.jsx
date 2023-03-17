@@ -4,13 +4,13 @@ import { FiSearch } from "react-icons/fi";
 import { HiOutlineCalendar } from "react-icons/hi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import SelectComponent from "./SelectComponent/SelectComponent";
-import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { RxChevronDown } from "react-icons/rx";
 import SideMenu from "./SideMenu/SideMenu";
-import { accordionStyles, accordionSummeryStyles } from "../accordionStyles";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { getContent } from "../../utils/changeLang";
+import { Link as Scroll } from "react-scroll";
+import { links, translations } from "./links";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -45,6 +45,8 @@ const Navbar = () => {
     }
   }, [pathname]);
 
+  // console.log(data);
+
   const getLinkClassName = (pathname, link) =>
     pathname.split("/")[1] === link ? "active-link" : "";
 
@@ -68,20 +70,40 @@ const Navbar = () => {
                 <FiSearch />
               </span>
             </li>
-            {data
-              ? data.map((item, i) => {
-                  return (
-                    <li key={i}>
-                      <NavLink
-                        className={getLinkClassName(pathname, item.options)}
-                        to={item.options}
+            {links.map((item, i) => {
+              return (
+                <li key={i}>
+                  {item.scroll ? (
+                    pathname === "/" ? (
+                      <Scroll
+                        className={""}
+                        activeClass={"active-link"}
+                        to={"section3-page"}
+                        spy={true}
+                        offset={-150}
                       >
-                        {item.title_ru}
-                      </NavLink>
-                    </li>
-                  );
-                })
-              : ""}
+                        {getContent(
+                          translations["ru"][item.link],
+                          translations["uz"][item.link]
+                        )}
+                      </Scroll>
+                    ) : (
+                      ""
+                    )
+                  ) : (
+                    <NavLink
+                      className={getLinkClassName(pathname, item.link)}
+                      to={item.link}
+                    >
+                      {getContent(
+                        translations["ru"][item.link],
+                        translations["uz"][item.link]
+                      )}
+                    </NavLink>
+                  )}
+                </li>
+              );
+            })}
             <li>
               <SelectComponent />
             </li>

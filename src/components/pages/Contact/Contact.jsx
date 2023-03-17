@@ -41,11 +41,11 @@ const MyMap = () => {
 
 const Contact = () => {
   return (
-    <section className="about-page">
-      <div className="about-page__container">
-        <h1 className="about-page__title">КОНТАКТЫ</h1>
-        <div className="about-page__wrapper">
-          <div className="about-page__info-wrapper">
+    <section className="contact-page">
+      <div className="contact-page__container">
+        <h1 className="contact-page__title">КОНТАКТЫ</h1>
+        <div className="contact-page__wrapper">
+          <div className="contact-page__info-wrapper">
             <div>
               <p>
                 <BsTelephone />
@@ -65,7 +65,7 @@ const Contact = () => {
               <p>Tashkent, Sergeli</p>
             </div>
           </div>
-          <div className="about-page__inputs">
+          <div className="contact-page__inputs">
             <h1>Fill in form</h1>
             <div>
               <input type="text" placeholder="Name" />
@@ -75,7 +75,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className="about-page__map-wrapper">
+        <div className="contact-page__map-wrapper">
           <MyMap />
         </div>
       </div>

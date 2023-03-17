@@ -9,7 +9,7 @@ import { FilterWrapper } from "../pages/CalendarPage/CalendarPage";
 const DayHour = ({ label, value }) => {
   return (
     <div className="asideFilter__hours-wrapper">
-      <h1 className="asideFilter__titles">{label}</h1>
+      <h1 className="asideFilter__titles">{label} </h1>
       <input type="text" value={value} />
     </div>
   );

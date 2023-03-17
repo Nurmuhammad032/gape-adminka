@@ -43,22 +43,24 @@ export default function MenuCreate() {
       });
     data.created_on = new Date();
   }, [0]);
+
   const handleChange = (event) => {
     const inputName = event.target.name;
     const inputValue = event.target.value;
     const lang = event.target.lang;
-    if (lang) {
-      let nameIn = inputName + "_" + lang;
-      if (inputName == "title") {
-        const slugifyTest = slug(inputValue, { locale: "bg" });
-        setData((oldValue) => ({ ...oldValue, ["alias"]: slugifyTest }));
-      }
-      // setData(oldValue=>({...oldValue, [inputName]: {...oldValue[inputName],  [lang]:inputValue}}))
-      setData((oldValue) => ({ ...oldValue, [nameIn]: inputValue }));
-    } else {
-      setData((oldValue) => ({ ...oldValue, [inputName]: inputValue }));
-    }
+    setData((oldValue) => ({ ...oldValue, [inputName]: inputValue }));
+    // if (lang) {
+    //   let nameIn = inputName + "_" + lang;
+    //   if (inputName == "title") {
+    //     const slugifyTest = slug(inputValue, { locale: "bg" });
+    //     setData((oldValue) => ({ ...oldValue, ["alias"]: slugifyTest }));
+    //   }
+    //   // setData(oldValue=>({...oldValue, [inputName]: {...oldValue[inputName],  [lang]:inputValue}}))
+    //   setData((oldValue) => ({ ...oldValue, [nameIn]: inputValue }));
+    // } else {
+    // }
   };
+  console.log(data);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -92,7 +94,7 @@ export default function MenuCreate() {
           <div className="bg-secondary rounded h-100 p-4">
             <h6 className="mb-4">Menu create form</h6>
             <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-              {lang.map((item, index) => {
+              {/* {lang.map((item, index) => {
                 index++;
                 return (
                   <li className="nav-item" role="presentation" key={index}>
@@ -110,14 +112,14 @@ export default function MenuCreate() {
                     </button>
                   </li>
                 );
-              })}
+              })} */}
             </ul>
             <div className="tab-content" id="pills-tabContent">
               <form onSubmit={handleSubmit}>
-                {lang.map((item, index) => {
+                {/* {lang.map((item, index) => {
                   index++;
-                  return (
-                    <div
+                  return ( */}
+                {/* <div
                       key={index}
                       className={`tab-pane fade ${
                         index == 1 ? "show active" : ""
@@ -125,53 +127,57 @@ export default function MenuCreate() {
                       id={`pills-lang${index}`}
                       role="tabpanel"
                       aria-labelledby={`pills-lang-${index}`}
-                    >
-                      <div className="row">
-                        <div className="col-12">
-                          <div className="mb-3">
-                            <label htmlFor="title" className="form-label">
-                              Title
-                            </label>
-                            {item.key == "ru" ? (
-                              <input
-                                type="text"
-                                name="title"
-                                lang={item.key}
-                                value={data["title_" + item.key]}
-                                onChange={handleChange}
-                                className="form-control"
-                                id="title"
-                                requried="true"
-                              />
-                            ) : (
-                              <input
-                                type="text"
-                                name="title"
-                                lang={item.key}
-                                value={data["title_" + item.key]}
-                                onChange={handleChange}
-                                className="form-control"
-                                id="title"
-                              />
-                            )}
-                          </div>
-                        </div>
-                        <div className="col-12">
-                          <div className="mb-3">
-                            <label htmlFor="content" className="form-label">
-                              Content
-                            </label>
-                            <EditorText
-                              setData={setData}
-                              lang={item.key}
-                              value={data["content_" + item.key]}
-                            />
-                          </div>
-                        </div>
-                      </div>
+                    > */}
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="mb-3">
+                      <label htmlFor="title_ru" className="form-label">
+                        Title : ru
+                      </label>
+                      <input
+                        type="text"
+                        name="title_ru"
+                        // lang={item.key}
+
+                        onChange={handleChange}
+                        className="form-control"
+                        id="title_ru"
+                      />
                     </div>
-                  );
-                })}
+                  </div>
+                  <div className="col-md-6">
+                    <div className="mb-3">
+                      <label htmlFor="title_uz" className="form-label">
+                        Title : uz
+                      </label>
+
+                      <input
+                        type="text"
+                        name="title_uz"
+                        // lang={item.key}
+
+                        onChange={handleChange}
+                        className="form-control"
+                        id="title_uz"
+                      />
+                    </div>
+                  </div>
+                  {/* <div className="col-12">
+                    <div className="mb-3">
+                      <label htmlFor="content" className="form-label">
+                        Content
+                      </label>
+                      <EditorText
+                        setData={setData}
+                        // lang={item.key}
+                        value={data["content_" + item.key]}
+                      />
+                    </div>
+                  </div> */}
+                </div>
+                {/* </div> */}
+                {/* //   );
+                // })} */}
                 <div className="row">
                   <div className="col-12">
                     <div className="mb-3">
@@ -187,7 +193,7 @@ export default function MenuCreate() {
                       />
                     </div>
                   </div>
-                  <div className="col-12">
+                  {/* <div className="col-12">
                     <div className="mb-3">
                       <label htmlFor="other_link" className="form-label">
                         Other link
@@ -200,8 +206,8 @@ export default function MenuCreate() {
                         id="other_link"
                       />
                     </div>
-                  </div>
-                  <div className="col-12">
+                  </div> */}
+                  {/* <div className="col-12">
                     <div className="mb-3">
                       <label htmlFor="other_link" className="form-label">
                         Date
@@ -216,8 +222,8 @@ export default function MenuCreate() {
                         }}
                       />
                     </div>
-                  </div>
-                  <div className="col-12">
+                  </div> */}
+                  {/* <div className="col-12">
                     <div className="mb-3">
                       <label htmlFor="alias" className="form-label">
                         Alias
@@ -232,7 +238,7 @@ export default function MenuCreate() {
                         required
                       />
                     </div>
-                  </div>
+                  </div> */}
                   <div className="col-6">
                     <Switch setData={setData} value={data.status} />
                   </div>

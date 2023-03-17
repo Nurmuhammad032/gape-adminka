@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 import { Calendar } from "react-calendar";
 import axios from "axios";
 import moment from "moment/moment";
+import "moment/locale/uz";
+
+Intl.DateTimeFormat.supportedLocalesOf(["en-US", "uz", "uz-Latn", "uz-Cyrl"], {
+  localeMatcher: "lookup",
+});
 
 function CalendarComponent({ setFilteredData }) {
   const [value, onChange] = useState(new Date());
@@ -26,6 +31,15 @@ function CalendarComponent({ setFilteredData }) {
       setDataDates((prev) => [...prev, dateObj]);
     }
   }, [data]);
+  const customShortWeekdayFormat = [
+    "Dush",
+    "Sesh",
+    "Chor",
+    "Pay",
+    "Jum",
+    "Sha",
+    "Yak",
+  ];
 
   useEffect(() => {
     const filteredData = data.filter((obj) => {
@@ -43,27 +57,12 @@ function CalendarComponent({ setFilteredData }) {
     return "";
   };
 
-  const locale = {
-    months: [
-      "janvier",
-      "février",
-      "mars",
-      "avril",
-      "mai",
-      "juin",
-      "juillet",
-      "août",
-      "septembre",
-      "octobre",
-      "novembre",
-      "décembre",
-    ],
-    weekdaysShort: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
-  };
-
   return (
     <Calendar
-      // locale={}
+      locale={"ru"}
+      // formatShortWeekday={(locale, value) =>
+      //   customShortWeekdayFormat[value.getDay()]
+      // }
       tileClassName={highlightTile}
       onChange={onChange}
       value={value}

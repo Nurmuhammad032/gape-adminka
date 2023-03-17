@@ -5,6 +5,7 @@ import "./Course.scss";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import i18next from "i18next";
+import { months } from "../../../utils/customLang";
 import { getContent } from "../../../utils/changeLang";
 
 const data1 = [
@@ -52,7 +53,14 @@ const Course = () => {
                 <h1>{getContent(data.title_ru, data.title_uz)}</h1>
                 <p className="course-page__desc-header">
                   {getContent("старт", "boshlanish")}: {date.getDate()}{" "}
-                  {date.toLocaleString("default", { month: "long" })}
+                  {getContent(
+                    months["ru"][
+                      date.toLocaleString("default", { month: "long" })
+                    ],
+                    months["uz"][
+                      date.toLocaleString("default", { month: "long" })
+                    ]
+                  )}
                 </p>
                 <p className="course-page__desc">
                   {getContent(data.short_content_ru, data.short_content_uz)}{" "}

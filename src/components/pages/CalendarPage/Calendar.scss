@@ -3,6 +3,10 @@
 .calendar {
   margin: 10rem 0 4rem 0;
 
+  .not-found {
+    color: #414141;
+  }
+
   &__container {
     max-width: 133rem;
     padding: 0 2rem;
@@ -323,7 +327,7 @@
 
 .react-calendar__tile--now {
   position: relative;
-  color: #000 !important;
+  // color: #000 !important;
 
   z-index: 1;
   &::after {
@@ -336,7 +340,8 @@
     border-radius: 50%;
     z-index: -1;
     height: 5rem;
-    background-color: yellow !important;
+    border: 2px solid yellow;
+    // background-color: yellow !important;
   }
 }
 

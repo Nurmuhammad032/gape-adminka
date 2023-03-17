@@ -18,7 +18,7 @@ const Section3 = () => {
   };
 
   return (
-    <section className="section3-page" ref={ref}>
+    <section className="section3-page" ref={ref} id="section3-page">
       <div className="section3-page__container">
         <div className="section3-page__wrapper">
           <div className="section3-page__right">

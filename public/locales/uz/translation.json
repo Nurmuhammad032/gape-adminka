@@ -11,5 +11,8 @@
   "teacher": {
     "header": "Ustozlar",
     "info": "Tanishing, ko'p yillik tajribaga ega iqtidorli o'qituvchilarimiz!"
+  },
+  "calendar": {
+    "notFound": "Kurs topilmadi"
   }
 }
